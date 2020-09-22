@@ -22,3 +22,17 @@
 - 跳转,
 - 支付完成, 返回app(能返回是因为redirect_url)
 在AppDelegate的程序进入前台的代理方法中处理当前网页刷新之前保存的appWillBecomeActiveWebReloadUrlString(至于这个保存的appWillBecomeActiveWebReloadUrlString的链接地址内容是什么,取决于前端如何处理).
+
+
+
+## 3.2 - 支付网页支付
+
+流程:
+
+- 获取当前请求的链接,是不是支付宝的
+- 保存连接中的参数名为redirect_url的对应数据为appWillBecomeActiveWebReloadUrlString,
+- 获取当前请求的链接,判断是不是支付宝跳转的协议链接, 并且包含fromAppUrlScheme
+- WebPayTool.handleWebUrl(urlString) 处理支付宝跳转的协议链接, （重点步骤）
+- 跳转
+- 支付完成, 返回app(能返回是因为redirect_url)
+- 在AppDelegate的程序进入前台的代理方法中处理当前网页刷新之前保存的appWillBecomeActiveWebReloadUrlString(至于这个保存的appWillBecomeActiveWebReloadUrlString的链接地址内容是什么,取决于前端如何处理).
